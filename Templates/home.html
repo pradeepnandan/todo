@@ -1,0 +1,111 @@
+{% extends 'base.html' %}
+{% block content %}
+
+             <div class="container-fluid">
+                          <!--Banner-->
+                            <div class="row">
+                                <div class="col-md-12 ">
+                                    <div class="banner">
+                                        <div class="banner-text">
+                                            <h3>TO DO </h3>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+             </div>
+
+
+             <form class="p-3 shadow" method="post">
+             {% csrf_token %}
+                <div class="container">
+
+                        <div class="row g-3" >
+
+                                    <div class="col-md-6">
+
+                                                                    <div class="row">
+                                <div class="col-md-12 ">
+                                    <div class="banner">
+                                        <div class="banner-text">
+                                            <h2>ADD TASKS</h2>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                                        <div class="form-group">
+                                            <input type="text" name="task" placeholder="Enter the task" class="form-control">
+                                        </div>
+                                         <div class="form-group">
+                                            <input type="text" name="priority" placeholder="Enter the Priority" class="form-control">
+                                        </div>
+                                        <div class="shadow form-group">
+                                            <input type="text" name="remarks" placeholder="Enter the Remarks" class="form-control">
+                                        </div><div class="shadow form-group">
+                                            <input type="date" name="date" placeholder="Date" class="form-control">
+                                        </div>
+
+                          <!--Banner-->
+                            <div class="row">
+                                <div class="col-md-12 ">
+                                    <div class="banner">
+                                        <div class="banner-text">
+                                            <div align="center" >
+                                                <input type="submit" class="btn btn-primary">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        <!--/div-->
+
+                                    </div>
+
+                                    <div class="col-md-6">
+                                        <div class="col-md-12 ">
+                                    <div class="banner">
+                                        <div class="banner-text">
+                                           <h2>PENDING TASKS</h2>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                         {% for i in task1 %}
+                                        <div class="shadow card">
+                                            <div class="card-body">
+
+                                                <h5 class="card-title">{{i.name}}</h5>
+
+                                                <h3> Priority is {{i.priority}} Dated: {{i.date}}</h3>
+
+
+
+
+                                                    <div class="container">
+                                                        <div class="row">
+                                                            <div class="col-md-12 bg-light text-right">
+                                                                <a class="btn btn-danger"  href="{% url 'delete' i.id %} " >Done</a>
+                                                                <a type="button" href='{% url 'update' i.id %}' class="btn btn-warning">Edit</a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                            </div>
+                                        </div>
+                                        {% endfor %}
+                                    </div>
+
+                        </div>
+
+
+
+
+
+                </div>
+             </form>
+
+
+
+
+
+{% endblock %}
